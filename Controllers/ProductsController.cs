@@ -3,29 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LondonMovingSouth.Models;
+using LondonMovingSouth.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LondonMovingSouth.Controllers
 {
     [Route("api/[controller]")]
-    public partial class ProductsController : Controller
+    public class ProductsController : Controller
     {
-        private static string[] Summaries = new[]
+        private readonly IProductsService _service;
+
+        public ProductsController(IProductsService service)
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+            _service = service;
+        }
 
         [HttpGet("[action]")]
-        public IEnumerable<Product> Products()
+        public async Task<IEnumerable<Product>> Products()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new Product
-            {
-                DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
-                Name = "prudct"+rng.ToString(),
-                Summary = Summaries[rng.Next(Summaries.Length)],
-                Price = decimal.Parse(rng.ToString())
-            });
+            return await _service.GetProductsAsync();
         }
     }
 }
