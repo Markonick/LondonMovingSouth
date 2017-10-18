@@ -6,8 +6,8 @@
 .main-nav li a.router-link-active,
 .main-nav li a.router-link-active:hover,
 .main-nav li a.router-link-active:focus {
-    background-color: #4189C7;
-    color: white;
+    background-color: #ba55d3;
+    color: #adff2f;
 }
 
 /* Keep the nav menu independent of scrolling and on top of other items */
@@ -34,7 +34,7 @@
         float: none;
     }
     .main-nav .navbar-collapse {
-        border-top: 1px solid #444;
+        border-top: 1px solid #adff2f;
         padding: 0px;
     }
     .main-nav .navbar ul {
